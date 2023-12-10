@@ -1,0 +1,12 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    background-color: #f9f6ee;
+    /* background-color: #CCF6FF; */
+    font-family: 'Roboto', sans-serif;
+    
+  }
+  html {
+    width: 100%;
+  }
