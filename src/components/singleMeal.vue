@@ -31,9 +31,8 @@
     </div>
     <p class="recepi">
         <p style="font-size: 350%; border-bottom:2px solid red ; width: fit-content;">Instructions</p>
-        {{ meal.strInstructions }}
-      </p>
-  
+      
+      <div  v-html="formattedInstructions"></div></p>
   <a :href="meal.strYoutube"><button class="button">Youtube</button></a>
 
   <a :href="meal.strSource"><button class="button">Source</button></a>
@@ -57,18 +56,43 @@ export default {
   data() {
     return {
       id: this.$route.params.id,
+      ins:"",
       meal: [],
     };
   },
   mounted() {
     this.mnt();
   },
+  computed: {
+    formattedInstructions() {
+      return this.convertToList(this.ins);
+    },
+  },
   methods: {
+    convertToList(instructions) {
+    if (!instructions) return ''; // Check if instructions is valid
+
+    // Split the instructions into individual steps using full stops
+    const steps = instructions.split(/(?<=\.)\s+/).filter(Boolean);
+
+    // Create an ordered list with each step as a list item
+    let htmlList = '<ol>';
+
+    steps.forEach((step) => {
+      htmlList += `<li>${step.trim()}</li>`;
+    });
+
+    htmlList += '</ol>';
+
+    return htmlList;
+  },
     async mnt() {
       const res = await axios.get(
         `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${this.id}`
       );
       this.meal = res.data.meals[0];
+      console.log(res.data.meals[0].strInstructions);
+      this.ins=res.data.meals[0].strInstructions;
       //   this.img = this.meal[0].strMealThumb;
     },
   },
