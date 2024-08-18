@@ -124,7 +124,7 @@ img {
     font-size: 7em;
     margin: 5px;
     padding: 15px;
-    border: 4px solid #252525;
+    /* border: 4px solid #252525; */
 }
 .cate{
     display: flex;

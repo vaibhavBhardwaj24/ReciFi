@@ -34,7 +34,7 @@
 
   <div class="abt">
     <div class="taxt">
-      <img src="svgs\Blogging-bro-png.png" alt="" style="height: 43em" />
+      <!-- <img src="svgs\Blogging-bro-png.png" alt="" style="height: 43em" /> -->
       <div class="text">
         <h1
           style="
